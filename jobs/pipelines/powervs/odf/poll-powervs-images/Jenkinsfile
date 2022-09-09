@@ -1,4 +1,4 @@
-@Library('jenkins-upstream-library') _
+@Library('odf-library') _
 //Define Global variable
 def INSTANCE_NAME_LIST = [
                     "rdr-ocp-cicd-montreal01",
@@ -12,8 +12,10 @@ def INSTANCE_NAME_LIST = [
                     ]
 pipeline {
     agent {
-        kubernetes {
-            inheritFrom 'jenkins-agent'
+        docker {
+            image 'quay.io/powercloud/inbound-agent:4.6-1.5'
+            args '-v /etc/resolv.conf:/etc/resolv.conf'
+            label 'jump-vpc-x86_64'
         }
     }
     options {
