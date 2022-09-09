@@ -4,7 +4,7 @@ def call() {
         env.FAILED_STAGE=""
         //VMs setup
         if ( env.POWERVS == "true" ) {
-            env.INSTANCE_NAME = "rdr-cicd"
+            env.INSTANCE_NAME = "rdr-odf"
             env.NETWORK_NAME = "ocp-net"
             env.RHEL_USERNAME = "root"
             env.RHEL_SMT = "4"
@@ -49,21 +49,7 @@ def call() {
             env.UPGRADE_DELAY_TIME = ""
 
 
-            //E2e Variables
-            env.E2E_GIT = "https://github.com/openshift/origin"
-            env.E2E_BRANCH="release-${env.OCP_RELEASE}"
-            if (OCP_RELEASE == "4.5" || OCP_RELEASE == "4.6" ) {
-                env.E2E_EXCLUDE_LIST = "https://raw.github.ibm.com/redstack-power/e2e-exclude-list/${env.OCP_RELEASE}-powervm/ocp${env.OCP_RELEASE}_power_exclude_list.txt"
-            }
-            else{
-                env.E2E_EXCLUDE_LIST = "https://raw.github.ibm.com/redstack-power/e2e-exclude-list/${env.OCP_RELEASE}-powervs/ocp${env.OCP_RELEASE}_power_exclude_list.txt"
-            }
-
-            //Scale variables
-            env.SCALE_NUM_OF_DEPLOYMENTS = "60"
-            env.SCALE_NUM_OF_NAMESPACES = "1000"
-
-            //Slack message
+           //Slack message
             env.MESSAGE=""
 
             env.DEPLOYMENT_STATUS = false
