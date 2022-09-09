@@ -106,6 +106,26 @@ pipeline {
                     }
                 }
             }
+        }
+        stage('Initialize Environment') {
+            steps {
+                initializeEnvironment()
+            }
+        }
+        stage('Setup Terraform Plugin') {
+            steps {
+                setupTerraformPlugin()
+            }
+        }
+        stage('Deploy OCP Cluster') {
+            steps {
+                deployCluster()
+            }
+        }
+        stage('Run crontab script for capturing outputs of multiple commands') {
+            steps {
+                crontabCommandCaptureScript()
+            }
         }	    
     }
 }
