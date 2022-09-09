@@ -7,9 +7,9 @@ pipeline {
         }
     }
     stages {
-        stage('Clone ansible extra') {
+        stage('Test') {
             steps {
-                cloneRepo("git@github.ibm.com:redstack-power/ocp4_ansible_extras.git", "ansible_extra")
+                echo "Test step"
             }
         }
     }
