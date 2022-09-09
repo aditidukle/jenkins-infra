@@ -12,4 +12,5 @@ pipeline {
                 cloneRepo("git@github.ibm.com:redstack-power/ocp4_ansible_extras.git", "ansible_extra")
             }
         }
+    }
 }
