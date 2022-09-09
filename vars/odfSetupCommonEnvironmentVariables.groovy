@@ -12,7 +12,7 @@ def call() {
             env.SYSTEM_TYPE = "s922"
             env.ENABLE_LOCAL_REGISTRY = "false"
             env.LOCAL_REGISTRY_IMAGE = "docker.io/ibmcom/registry-ppc64le:2.6.2.5"
-            env.SETUP_SQUID_PROXY = "true"
+            env.SETUP_SQUID_PROXY = "false"
             //Needed for target service
             env.CRN = "crn:v1:bluemix:public:power-iaas:tor01:a/7cfbd5381a434af7a09289e795840d4e:007e0e92-91d5-4f30-bc63-ca515660a4c2::"
 
