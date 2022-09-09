@@ -1,4 +1,4 @@
-def call(String config, String noOfWorkers="3"){
+def call(){
     script{
         //Setup PowerVS cluster config
         //Min config
@@ -12,7 +12,7 @@ def call(String config, String noOfWorkers="3"){
             env.MASTER_PROCESSORS = ".5"
             env.MASTER_MEMORY = "64"
 
-            env.NUM_OF_WORKERS = noOfWorkers
+            env.NUM_OF_WORKERS = 3
             env.WORKER_PROCESSORS = "1.25"
             env.WORKER_MEMORY = "64"
     }
