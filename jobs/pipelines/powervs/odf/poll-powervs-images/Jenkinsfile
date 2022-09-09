@@ -1,13 +1,6 @@
 @Library('odf-library') _
 //Define Global variable
 def INSTANCE_NAME_LIST = [
-                    "rdr-ocp-cicd-montreal01",
-                    "rdr-ocp-cicd-osaka21",
-                    "rdr-ocp-cicd-sydney05",
-                    "rdr-ocp-cicd-tokyo04",
-                    "rdr-ocp-cicd-toronto01",
-                    "rdr-ocp-upi-validation-osa21",
-                    "rdr-ocp-upi-validation-tor01",
                     "rdr-svenkat-ocp-storage-sao01-odf-411"
                     ]
 pipeline {
@@ -23,7 +16,7 @@ pipeline {
     }
     environment {
         //users and credentials. All must be defined in Jenkins Credentials
-        IBM_CLOUD_API_KEY = credentials('IBMCLOUD_UPSTREAM_CI_API_KEY')
+        IBM_CLOUD_API_KEY = "77w4pArcCw-MXdCDdzdwUyFsKkShMcpCIMgZReVXmFpC"
         PCLOUD_IBM_API_KEY = credentials('IBM_PCLOUD_QE_API_KEY')
         PVSADM_VERSION = "v0.1.7"
     }
