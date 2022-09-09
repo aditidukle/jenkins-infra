@@ -8,7 +8,8 @@ def INSTANCE_NAME_LIST = [
                     "rdr-ocp-cicd-toronto01",
                     "rdr-ocp-cicd-london06",
                     "rdr-ocp-upi-validation-osa21",
-                    "rdr-ocp-upi-validation-tor01"
+                    "rdr-ocp-upi-validation-tor01",
+                    "rdr-svenkat-ocp-storage-sao01-odf-411"
                     ]
 pipeline {
     agent {
