@@ -30,6 +30,7 @@ def call(String region="us-south",resource_group="ibm-internal-cicd-resource-gro
                 curl -sL https://raw.githubusercontent.com/ppc64le-cloud/pvsadm/master/get.sh | VERSION="v0.1.8" FORCE=1 bash
                 ibmcloud login -a cloud.ibm.com -r ${REGION} -q --apikey=${IBMCLOUD_API_KEY}
                 ibmcloud target -r ${REGION}
+                ibmcloud plugin install power-iaas
                 CRN=$(ibmcloud pi service-list  | grep "${SERVICE_INSTANCE_ID}" |awk '{print $1}')
                 ibmcloud pi service-target "$CRN"
             fi            
