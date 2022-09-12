@@ -5,7 +5,9 @@ def call(){
         }
         try {
             sh '''
-               scp
+               scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/data/pull-secret.txt root@${BASTION_IP}:/root/pull-secret.txt
+               #scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/data/auth.yaml root@${BASTION_IP}:/root/auth.yaml
+               #copy auth directory
                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} " git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git
                cd ocs-upi-kvm
                git submodule update --init
