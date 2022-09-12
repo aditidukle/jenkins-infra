@@ -47,6 +47,11 @@ pipeline {
                 cloneRepo("git@github.ibm.com:redstack-power/ocp4_ansible_extras.git", "ansible_extra")
             }
         }
+        stage('Clone ocs-upi-kvm') {
+            steps {
+                cloneRepo("git@github.com:ocp-power-automation/ocs-upi-kvm.git", "ocs-upi-kvm")
+            }
+        }	    
         stage('Setup Common Environment Variables') {
             steps {
                 odfSetupCommonEnvironmentVariables()
