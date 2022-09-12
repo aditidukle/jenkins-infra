@@ -109,7 +109,7 @@ pipeline {
         }
         stage('Initialize Environment') {
             steps {
-                initializeEnvironment()
+                odfInitializeEnvironment()
             }
         }
         stage('Setup Terraform Plugin') {
