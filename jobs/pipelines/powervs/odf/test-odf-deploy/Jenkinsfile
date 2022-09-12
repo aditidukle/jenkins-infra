@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Clone ocs-upi-kvm') {
             steps {
-                cloneRepo("git@github.com:ocp-power-automation/ocs-upi-kvm.git", "ocs-upi-kvm")
+                cloneRepo("https://github.com/ocp-power-automation/ocs-upi-kvm.git", "ocs-upi-kvm")
             }
         }	    
         stage('Setup Common Environment Variables') {
