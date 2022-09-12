@@ -39,6 +39,10 @@ pipeline {
         POWERVS = true
         SCRIPT_DEPLOYMENT = false
         WAIT_FOR_DEBUG = "1"
+	
+	 //ODF vars
+	 PLATFORM = "powervs"
+	 ODF_VERSION = 4.11
 	 }
     
     stages {
