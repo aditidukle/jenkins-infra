@@ -12,11 +12,11 @@ pipeline {
      environment {
         //users and credentials. All must be defined in Jenkins Credentials
         GITHUB_USER = credentials('GITHUB_USER')
-        IBMCLOUD_API_KEY = "77w4pArcCw-MXdCDdzdwUyFsKkShMcpCIMgZReVXmFpC"
+        IBMCLOUD_API_KEY = credentials('ODF_IBMCLOUD_API_KEY')
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
         REDHAT_USERNAME = credentials('REDHAT_USERNAME')
         REDHAT_PASSWORD = credentials('REDHAT_PASSWORD')
-        PULL_SECRET = credentials('PULL_SECRET')
+        PULL_SECRET = credentials('ODF_PULL_SECRET')
 
         //Env constants
         TERRAFORM_VER = "1.2.0"
@@ -34,7 +34,7 @@ pipeline {
         //Makefile variables
         OPENSHIFT_POWERVS_GIT_TF_DEPLOY_BRANCH="master" //The download branch
 
-        TARGET = "deploy-openshift4-powervs"
+        TARGET = "deploy-openshift4-powervs-odf"
         TEMPLATE_FILE = ".${TARGET}.tfvars.template"
         POWERVS = true
         SCRIPT_DEPLOYMENT = false
