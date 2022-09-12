@@ -9,8 +9,8 @@ def call(){
             env.BOOTSTRAP_PROCESSORS = ".5"
 
             env.NUM_OF_MASTERS = "3"
-            env.MASTER_PROCESSORS = ".5"
-            env.MASTER_MEMORY = "64"
+            env.MASTER_PROCESSORS = "1.25"
+            env.MASTER_MEMORY = "32"
 
             env.NUM_OF_WORKERS = 3
             env.WORKER_PROCESSORS = "1.25"
