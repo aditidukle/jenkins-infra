@@ -7,7 +7,6 @@ def call(){
             sh '''
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/pull-secret.txt root@${BASTION_IP}:/root/
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
-               #copy auth directory
                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} " git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git
                cd ocs-upi-kvm
                git submodule update --init
@@ -21,6 +20,7 @@ def call(){
                export PVS_SERVICE_INSTANCE_ID=${SERVICE_INSTANCE_ID}
                ./setup-ocs-ci.sh > setup-ocs-ci.log     
                "
+               scp -i id_rsa -o StrictHostKeyChecking=no root@${BASTION_IP}:/root/ocs-upi-kvm/scripts/setup-ocs-ci.log ${WORKSPACE}
             '''
         }
         catch (err) {
