@@ -62,18 +62,8 @@ pipeline {
         stage('Run ODF Setup script') {
             steps {
                 odfAuthYaml()
-		            odfRunSetupScript()
+		odfRunSetupScript()
             }
-        }	    
-        stage('Run ODF deploy script') {
-            steps {
-                odfRunDeployScript()
-            }
-        }	    
-        stage('Run ODF tier 1 tests') {
-            steps {
-                odfRunTierTests()
-            }
-        }	    
+        }	    	    
     }
 }
