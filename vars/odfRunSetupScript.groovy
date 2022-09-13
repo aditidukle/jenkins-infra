@@ -37,7 +37,7 @@ vT/Wh6Pe44mFAk99AAAAEXJvb3RAZGU1ODAyNjcwNDRkAQ==
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
                scp -o 'StrictHostKeyChecking no' -i id_rsa ${WORKSPACE}/scripts/odf-run-setup.sh root@${BASTION_IP}:
                ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${BASTION_IP} "chmod 755 odf-run-setup.sh;
-                                                                                odf-run-setup.sh > setup.log
+                                                                                ./odf-run-setup.sh > setup.log
                                                                                 exit"
                #scp -i id_rsa -o StrictHostKeyChecking=no root@${BASTION_IP}:/root/ocs-upi-kvm/scripts/setup-ocs-ci.log ${WORKSPACE}
             '''
