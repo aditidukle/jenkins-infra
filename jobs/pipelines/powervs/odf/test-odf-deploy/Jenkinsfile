@@ -43,6 +43,7 @@ pipeline {
 	 //ODF vars
 	 PLATFORM = "powervs"
 	 ODF_VERSION = 4.11
+	 TIER_TEST = 1
 	 }
     
     stages {
@@ -154,7 +155,7 @@ pipeline {
         }	    
         stage('Run ODF tier 1 tests') {
             steps {
-                odfRunTierTests("1")
+                odfRunTierTests()
             }
         }	    
     }
