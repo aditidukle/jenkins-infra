@@ -69,6 +69,11 @@ pipeline {
             steps {
                 odfRunDeployScript()
             }
-        }	    	    
+        }	
+        stage('Run ODF tier 1 tests') {
+            steps {
+                odfRunTierTests()
+            }
+        }	 
     }
 }
