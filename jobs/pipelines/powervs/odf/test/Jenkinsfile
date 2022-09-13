@@ -1,0 +1,79 @@
+@Library('odf-library') _
+
+pipeline {
+    agent {
+        docker {
+            image 'quay.io/powercloud/inbound-agent:4.6-1.5'
+            args '-v /etc/resolv.conf:/etc/resolv.conf'
+            label 'jump-vpc-x86_64'
+        }
+    }
+   
+     environment {
+        //users and credentials. All must be defined in Jenkins Credentials
+        GITHUB_USER = credentials('GITHUB_USER')
+        IBMCLOUD_API_KEY = credentials('ODF_IBMCLOUD_API_KEY')
+        GITHUB_TOKEN = credentials('GITHUB_TOKEN')
+        REDHAT_USERNAME = credentials('REDHAT_USERNAME')
+        REDHAT_PASSWORD = credentials('REDHAT_PASSWORD')
+        PULL_SECRET = credentials('ODF_PULL_SECRET')
+
+        //Env constants
+        TERRAFORM_VER = "1.2.0"
+
+        IBM_CLOUD_REGION = "sao"
+        IBM_CLOUD_ZONE = "sao01"
+        SERVICE_INSTANCE_ID = "481377eb-e843-46df-9afa-a815da381ffa"
+
+        BASTION_IMAGE = "rhel-86"
+        RHCOS_IMAGE = "rhcos-411"
+        BASTION_IMAGE_FILE = "latest-${BASTION_IMAGE}-rdr-svenkat-ocp-storage-sao01-odf-411.txt"
+        RHCOS_IMAGE_FILE = "latest-${RHCOS_IMAGE}-rdr-svenkat-ocp-storage-sao01-odf-411.txt"
+        OCP_RELEASE = "4.11"
+
+        //Makefile variables
+        OPENSHIFT_POWERVS_GIT_TF_DEPLOY_BRANCH="master" //The download branch
+
+        TARGET = "deploy-openshift4-powervs-odf"
+        TEMPLATE_FILE = ".${TARGET}.tfvars.template"
+        POWERVS = true
+        SCRIPT_DEPLOYMENT = false
+        WAIT_FOR_DEBUG = "1"
+	      BASTION_IP = "169.57.212.235"
+       
+        //ODF vars
+        PLATFORM = "powervs"
+        ODF_VERSION = 4.11
+        TIER_TEST = 1
+	 }
+    
+    stages {
+        stage('Clone ansible extra') {
+            steps {
+                cloneRepo("git@github.ibm.com:redstack-power/ocp4_ansible_extras.git", "ansible_extra")
+            }
+        }  
+        stage('Setup Common Environment Variables') {
+            steps {
+                odfSetupCommonEnvironmentVariables()
+                odfSetupClusterConfig()
+            }
+        }
+        stage('Run ODF Setup script') {
+            steps {
+                odfAuthYaml()
+		            odfRunSetupScript()
+            }
+        }	    
+        stage('Run ODF deploy script') {
+            steps {
+                odfRunDeployScript()
+            }
+        }	    
+        stage('Run ODF tier 1 tests') {
+            steps {
+                odfRunTierTests()
+            }
+        }	    
+    }
+}
