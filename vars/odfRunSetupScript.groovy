@@ -46,7 +46,8 @@ vT/Wh6Pe44mFAk99AAAAEXJvb3RAZGU1ODAyNjcwNDRkAQ==
                export RHID_USERNAME=${REDHAT_USERNAME}
                export RHID_PASSWORD=${REDHAT_PASSWORD}
                export PVS_SERVICE_INSTANCE_ID=${SERVICE_INSTANCE_ID}
-               ./setup-ocs-ci.sh > setup-ocs-ci.log     
+               ./setup-ocs-ci.sh > setup-ocs-ci.log
+               exit
                "
                scp -i id_rsa -o StrictHostKeyChecking=no root@${BASTION_IP}:/root/ocs-upi-kvm/scripts/setup-ocs-ci.log ${WORKSPACE}
             '''
