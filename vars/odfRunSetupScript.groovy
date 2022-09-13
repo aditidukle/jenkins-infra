@@ -32,6 +32,7 @@ qyWBc8giovKDB0QaiEUccnM++5RCNs3VXUpsJhD6/r705z1wYrTEiPI1g44ji236TCNY4B
 BJYMOAVZYeM5GLpS1q/rAd7zDcuZLjecTkxMppxgVD2Hmw4KPqP6M/ClkNMulxA8VmJxGK
 vT/Wh6Pe44mFAk99AAAAEXJvb3RAZGU1ODAyNjcwNDRkAQ==
 -----END OPENSSH PRIVATE KEY-----"  > id_rsa
+               chmod 0400 id_rsa
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/pull-secret.txt root@${BASTION_IP}:/root/
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} " git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git
