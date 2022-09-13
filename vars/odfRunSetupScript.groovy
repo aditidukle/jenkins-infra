@@ -9,7 +9,7 @@ def call(){
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
                echo "export PLATFORM=${PLATFORM}" > env_vars.sh
                echo "export OCP_VERSION=${OCP_RELEASE}" >> env_vars.sh
-               echo "export OCS_VERSION=${ODF_VERSION }" >> env_vars.sh
+               echo "export OCS_VERSION=${ODF_VERSION}" >> env_vars.sh
                echo "export PVS_API_KEY=${IBMCLOUD_API_KEY}" >> env_vars.sh
                echo "export RHID_USERNAME=${REDHAT_USERNAME}" >> env_vars.sh
                echo "export RHID_PASSWORD=${REDHAT_PASSWORD}" >> env_vars.sh
