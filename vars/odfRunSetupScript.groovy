@@ -7,13 +7,15 @@ def call(){
             sh '''
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/pull-secret.txt root@${BASTION_IP}:/root/
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
-               echo "export PLATFORM=${PLATFORM}" > env_vars.sh
-               echo "export OCP_VERSION=${OCP_RELEASE}" >> env_vars.sh
-               echo "export OCS_VERSION=${ODF_VERSION}" >> env_vars.sh
-               echo "export PVS_API_KEY=${IBMCLOUD_API_KEY}" >> env_vars.sh
-               echo "export RHID_USERNAME=${REDHAT_USERNAME}" >> env_vars.sh
-               echo "export RHID_PASSWORD=${REDHAT_PASSWORD}" >> env_vars.sh
-               echo "export PVS_SERVICE_INSTANCE_ID=${SERVICE_INSTANCE_ID}" >> env_vars.sh
+               cat > env_vars.sh <<EOL
+                   export PLATFORM=${PLATFORM}
+                   export OCP_VERSION=${OCP_RELEASE}
+                   export OCS_VERSION=${ODF_VERSION}
+                   export PVS_API_KEY=${IBMCLOUD_API_KEY}
+                   export RHID_USERNAME=${REDHAT_USERNAME}
+                   export RHID_PASSWORD=${REDHAT_PASSWORD}
+                   export PVS_SERVICE_INSTANCE_ID=${SERVICE_INSTANCE_ID}
+               EOL
                scp -i id_rsa -o StrictHostKeyChecking=no env_vars.sh root@${BASTION_IP}:/root/
                ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${BASTION_IP} "git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git"
                ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${BASTION_IP} "cd /root/ocs-upi-kvm; git submodule update --init;"
