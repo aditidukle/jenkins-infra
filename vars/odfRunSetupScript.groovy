@@ -35,7 +35,7 @@ vT/Wh6Pe44mFAk99AAAAEXJvb3RAZGU1ODAyNjcwNDRkAQ==
                chmod 0400 id_rsa
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/pull-secret.txt root@${BASTION_IP}:/root/
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
-               ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "bash -s" << EOF
+               ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} << EOF
                    git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git
                    cd ocs-upi-kvm
                    git submodule update --init
