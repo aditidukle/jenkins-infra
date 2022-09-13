@@ -7,6 +7,7 @@ def call(){
             sh '''
                #scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/pull-secret.txt root@${BASTION_IP}:/root/
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
+               ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${BASTION_IP} "oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson=/root/pull-secret.txt; sleep 60;"
                echo "export PLATFORM=${PLATFORM}" > env_vars.sh
                echo "export OCP_VERSION=${OCP_RELEASE}" >> env_vars.sh
                echo "export OCS_VERSION=${ODF_VERSION}" >> env_vars.sh
