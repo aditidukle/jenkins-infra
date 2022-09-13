@@ -7,8 +7,8 @@ def call(){
             sh '''
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/pull-secret.txt root@${BASTION_IP}:/root/
                scp -i id_rsa -o StrictHostKeyChecking=no ${WORKSPACE}/deploy/data/auth.yaml root@${BASTION_IP}:/root/
-               scp -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa ${WORKSPACE}/scripts/odf-run-setup.sh root@${BASTION_IP}:
-               ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git;
+               scp -o 'StrictHostKeyChecking no' -i id_rsa ${WORKSPACE}/scripts/odf-run-setup.sh root@${BASTION_IP}:
+               ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${BASTION_IP} "git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git;
                                                                                 cd ocs-upi-kvm
                                                                                 git submodule update --init
                                                                                 cd scripts/
