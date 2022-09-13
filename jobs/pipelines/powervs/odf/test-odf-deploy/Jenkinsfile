@@ -42,8 +42,8 @@ pipeline {
 	
 	 //ODF vars
 	 PLATFORM = "powervs"
-	 ODF_VERSION = 4.11
-	 TIER_TEST = 1
+	 ODF_VERSION = "4.11"
+	 TIER_TEST = "1"
 	 }
     
     stages {
