@@ -5,6 +5,7 @@ def call(){
         }
         try {
             sh '''
+               sudo rm -rf ${WORKSPACE}/odf
                mkdir ${WORKSPACE}/odf
                cd  ${WORKSPACE}/odf
                echo "-----BEGIN OPENSSH PRIVATE KEY-----
