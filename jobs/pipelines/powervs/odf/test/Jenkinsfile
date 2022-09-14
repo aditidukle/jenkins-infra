@@ -62,7 +62,7 @@ pipeline {
         stage('Run ODF Setup script') {
             steps {
                 odfAuthYaml()
-		odfTestRunSetupScript()
+		odfRunSetupScript()
             }
         }	 
     }
