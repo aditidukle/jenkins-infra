@@ -39,7 +39,7 @@ pipeline {
         POWERVS = true
         SCRIPT_DEPLOYMENT = false
         WAIT_FOR_DEBUG = "1"
-	      BASTION_IP = "169.57.212.235"
+	      BASTION_IP = "169.57.212.156"
        
         //ODF vars
         PLATFORM = "powervs"
