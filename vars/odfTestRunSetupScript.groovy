@@ -71,8 +71,11 @@ YsFk0OFlJX8jt6o/AAAAEXJvb3RANDczYmE1ODkzOWNkAQ==
                echo "export BASTION_IP=169.57.212.156" > .bastion_ip
                echo "export PLATFORM=${PLATFORM}" >> .bastion_ip
                git clone https://github.com/ocp-power-automation/ocs-upi-kvm.git
-               cd /root/ocs-upi-kvm; git submodule update --init;
-               ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${BASTION_IP} "oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson=/root/pull-secret.txt;"
+               cd ocs-upi-kvm; git submodule update --init;
+               echo "export KUBECONFIG=${WORKSPACE}/odf/auth/kubeconfig" > env-ocp.sh
+               chmod 0755 env-ocp.sh
+               source env-ocp.sh
+               oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson=./pull-secret.txt
                echo "export PLATFORM=${PLATFORM}" > env_vars.sh
                echo "export OCP_VERSION=${OCP_RELEASE}" >> env_vars.sh
                echo "export OCS_VERSION=${ODF_VERSION}" >> env_vars.sh
@@ -83,7 +86,7 @@ YsFk0OFlJX8jt6o/AAAAEXJvb3RANDczYmE1ODkzOWNkAQ==
                echo "export TIER_TEST=${TIER_TEST}" >> env_vars.sh
                echo "export OCS_CI_ON_BATION=true" >> env_vars.sh
                source env_vars.sh
-               cd /root/ocs-upi-kvm/scripts 
+               cd scripts 
                ./setup-ocs-ci.sh > setup-ocs-ci.log
                cp setup-ocs-ci.log ${WORKSPACE}/
             '''
