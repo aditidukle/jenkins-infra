@@ -152,11 +152,32 @@ pipeline {
             steps {
                 odfRunDeployScript()
             }
+        }
+        stage('Capture output of multiple commands to verify ODF deployment') {
+            steps {
+                odfRunCommands()
+            }
         }	    
-        stage('Run ODF tier 1 tests') {
+        stage('Run ODF tier tests') {
             steps {
                 odfRunTierTests()
             }
-        }	    
+        }
+        stage('Capture tier test summary') {
+            steps {
+                odfCaptureTierSummary()
+            }
+        }
     }
+    post {
+        always {
+            archiveAllArtifacts("setup-ocs-ci.log", "deploy-ocs-ci.log", "odf-commands.txt", "tier1.log", "tier1-summary.txt",
+                "tier1.html")
+            cleanupOcp4Cluster()
+            checkInfraError()
+            cleanupPowerVSResources()
+            notifyBySlack(currentBuild.result, env.MESSAGE)
+            cleanWs()
+        }
+    }	
 }
