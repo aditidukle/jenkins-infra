@@ -39,7 +39,7 @@ Qh/pM4+vQUlk1Xz7AAAAEXJvb3RAMGM4MmFjMWRmZmY2AQ==
                     sed -n '/short test summary info/, /Test result:/p' tier${TIER_TEST}.log | awk '/passed/&&/failed/&&/skipped/' > slacksummary.txt
                     echo "Failures from ODF ${ODF_VERSION} tier ${TIER_TEST}" >> slacksummary.txt
                     sed -n '/short test summary info/, /Test result:/p' tier${TIER_TEST}.log  | grep "FAILED" >> slacksummary.txt
-                    cp slacksummary.txt ${WORKSPACE}
+                   # cp slacksummary.txt ${WORKSPACE}
                    #else
                    #  echo "tier${TIER_TEST}.log file not found" > slacksummary.txt
                    #fi
