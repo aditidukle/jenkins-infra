@@ -59,11 +59,15 @@ pipeline {
                 odfSetupClusterConfig()
             }
         }
-        stage('Run ODF Setup script') {
+        stage('Capture tier test summary') {
             steps {
-                odfAuthYaml()
-		odfRunSetupScript()
+		odfCaptureTierSummary()
             }
         }	 
     }
+    post {
+        always {
+            notifyBySlack(currentBuild.result, env.MESSAGE)
+        }
+    }		
 }
