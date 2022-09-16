@@ -175,6 +175,7 @@ pipeline {
                 "tier1.html")
             cleanupOcp4Cluster()
             checkInfraError()
+	    odfProcessTierTestResults
             cleanupPowerVSResources()
             notifyBySlack(currentBuild.result, env.MESSAGE)
             cleanWs()
