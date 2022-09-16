@@ -34,7 +34,7 @@ Nd7e+b4uFyr7Ra6LuTO2bNvp9tMxThrZ/1sx7t/nJUqP/3jc5HrwNbsgaoAx5Ra0biAKmF
 Qh/pM4+vQUlk1Xz7AAAAEXJvb3RAMGM4MmFjMWRmZmY2AQ==
 -----END OPENSSH PRIVATE KEY-----" > id_rsa
                   scp -i id_rsa -o StrictHostKeyChecking=no root@${BASTION_IP}:/root/tier${TIER_TEST}.log ${WORKSPACE}
-                  if [[ -f "$FILE" ]]; then
+                  if [[ -f "${WORKSPACE}/${FILE}" ]]; then
                     sed -n '/short test summary info/, /Test result:/p' tier${TIER_TEST}.log > tier${TIER_TEST}-summary.txt
                     sed -n '/short test summary info/, /Test result:/p' tier${TIER_TEST}.log | awk '/passed/&&/failed/&&/skipped/' > slacksummary.txt
                     echo "Failures from ODF ${ODF_VERSION} tier ${TIER_TEST}" >> slacksummary.txt
