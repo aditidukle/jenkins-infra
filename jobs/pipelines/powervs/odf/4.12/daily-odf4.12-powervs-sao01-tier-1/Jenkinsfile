@@ -28,10 +28,8 @@ pipeline {
         BASTION_IMAGE = "rhel-86"
         RHCOS_IMAGE = "rhcos-412"
         BASTION_IMAGE_FILE = "latest-${BASTION_IMAGE}-rdr-svenkat-ocp-storage-sao01-odf-411.txt"
+	RHCOS_IMAGE_FILE = "latest-${RHCOS_IMAGE}-rdr-svenkat-ocp-storage-sao01-odf-411.txt"
         OCP_RELEASE = "4.12"
-
-        //Makefile variables
-        OPENSHIFT_POWERVS_GIT_TF_DEPLOY_BRANCH="master" //The download branch
 
         TARGET = "deploy-openshift4-powervs-script-odf"
         TEMPLATE_FILE = ".${TARGET}.tfvars.template"
@@ -66,6 +64,7 @@ pipeline {
             steps {
                 getArtifacts("mirror-openshift-release", "latest-${OCP_RELEASE}-build.txt" )
                 getArtifacts("powervs/odf/poll-powervs-images", "${BASTION_IMAGE_FILE}")
+                getArtifacts("powervs/odf/poll-powervs-images", "${RHCOS_IMAGE_FILE}" )		    
             }
         }
         //Checkout the installer git repo
@@ -97,6 +96,14 @@ pipeline {
                             echo "${BASTION_IMAGE_FILE} file does not exist. Please check poll-powervs-job"
                             throw err
                         }
+                        if (fileExists("deploy/artifactory/${RHCOS_IMAGE_FILE}")) {
+                            env.RHCOS_IMAGE_NAME = readFile "deploy/artifactory/${RHCOS_IMAGE_FILE}"
+                            env.RHCOS_IMAGE_NAME = env.RHCOS_IMAGE_NAME.trim()
+                        }
+                        else{
+                            echo "${RHCOS_IMAGE_FILE} file does not exist. Please check poll-powervs-job"
+                            throw err
+                        }			    
                     }
                     catch (err)
                     {
