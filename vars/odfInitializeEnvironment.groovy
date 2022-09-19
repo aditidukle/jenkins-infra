@@ -12,6 +12,7 @@ def call(String region="us-south",resource_group="ibm-internal-cicd-resource-gro
            sh '''
             echo 'Initializing supporting repos and keys !'
             cd ${WORKSPACE}/deploy
+            make keys:clean
             make init
             make keys
             make setup-dependencies
