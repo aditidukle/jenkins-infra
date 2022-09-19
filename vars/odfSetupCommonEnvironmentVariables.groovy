@@ -4,7 +4,7 @@ def call() {
         env.FAILED_STAGE=""
         //VMs setup
         if ( env.POWERVS == "true" ) {
-            env.INSTANCE_NAME = "rdr-odf"
+            env.INSTANCE_NAME = "jenkins-odf"
             env.NETWORK_NAME = "ocp-net"
             env.RHEL_USERNAME = "root"
             env.RHEL_SMT = "4"
