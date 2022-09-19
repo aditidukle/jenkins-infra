@@ -28,14 +28,14 @@ pipeline {
         BASTION_IMAGE = "rhel-86"
         RHCOS_IMAGE = "rhcos-412"
         BASTION_IMAGE_FILE = "latest-${BASTION_IMAGE}-rdr-ocp-storage-sydney05-odf.txt"
-	      RHCOS_IMAGE_FILE = "latest-${RHCOS_IMAGE}-rdr-ocp-storage-sydney05-odf.txt"
+	RHCOS_IMAGE_FILE = "latest-${RHCOS_IMAGE}-rdr-ocp-storage-sydney05-odf.txt"
         OCP_RELEASE = "4.12"
 
         TARGET = "deploy-openshift4-powervs-script-odf"
         TEMPLATE_FILE = ".${TARGET}.tfvars.template"
         POWERVS = true
         SCRIPT_DEPLOYMENT = true
-        WAIT_FOR_DEBUG = "3"
+        WAIT_FOR_DEBUG = "1"
 
         //ODF vars
         PLATFORM = "powervs"
