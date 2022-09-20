@@ -168,8 +168,7 @@ pipeline {
     }
     post {
         always {
-            archiveAllArtifacts("setup-ocs-ci.log", "deploy-ocs-ci.log", "odf-commands.txt", "tier${TIER_TEST}.log", "tier${TIER_TEST}-summary.txt",
-                              "tier${TIER_TEST}.html")
+            archiveAllArtifacts("setup-ocs-ci.log", "deploy-ocs-ci.log", "odf-commands.txt", "tier${TIER_TEST}.log", "tier${TIER_TEST}-summary.txt")
             cleanupOcp4Cluster()
             checkInfraError()
 	    odfProcessTierTestResults()
