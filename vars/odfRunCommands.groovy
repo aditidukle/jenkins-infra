@@ -22,7 +22,7 @@ def call(){
                ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "oc get bucketclass -n openshift-storage"; oc get bucketclass -n openshift-storage; echo) >> odf-commands.txt "
                ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "oc get noobaa -n openshift-storage"; oc get noobaa -n openshift-storage; echo) >> odf-commands.txt "
                ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "oc get noobaa -n openshift-storage -o yaml"; oc get noobaa -n openshift-storage -o yaml; echo) >> odf-commands.txt "
-               ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "ODF build:"; op=`oc get csv -n openshift-storage |grep odf-operator | awk {'print $1'}`  oc get csv $op  -n openshift-storage -o yaml | grep full_version | cut -d : -f 2; echo) >> odf-commands.txt "
+               ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "ODF build:"; op=`oc get csv -n openshift-storage |grep odf-operator | awk {'print $1'}`  oc get csv $op  -n openshift-storage -o yaml | grep full_version; echo) >> odf-commands.txt "
                scp -i ${WORKSPACE}/deploy/id_rsa -o StrictHostKeyChecking=no root@${BASTION_IP}:/root/odf-commands.txt ${WORKSPACE}
                cat ${WORKSPACE}/odf-commands.txt | grep "ODF build:" | cut -d : -f 2 > odfbuild
             '''
