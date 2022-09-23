@@ -24,9 +24,9 @@ def call(){
                ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "oc get noobaa -n openshift-storage -o yaml"; oc get noobaa -n openshift-storage -o yaml; echo) >> odf-commands.txt "
                ssh -o 'StrictHostKeyChecking no' -o 'ServerAliveInterval=60' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP} "(echo "ODF build:"; op=`oc get csv -n openshift-storage |grep odf-operator | awk {'print $1'}`  oc get csv $op  -n openshift-storage -o yaml | grep full_version) >> odf-commands.txt "
                scp -i ${WORKSPACE}/deploy/id_rsa -o StrictHostKeyChecking=no root@${BASTION_IP}:/root/odf-commands.txt ${WORKSPACE}
-               tail -1 ${WORKSPACE}/odf-commands.txt  > odfbuild
+               grep -m 1 full_version ${WORKSPACE}/odf-commands.txt | cut -d : -f 2 > odfbuild.txt
             '''
-             odfbuild = readFile 'odfbuild'
+             odfbuild = readFile 'odfbuild.txt'
              env.ODF_BUILD = "`${odfbuild}`"
         }
         catch (err) {
