@@ -5,7 +5,7 @@ def call(String region="us-south",resource_group="ibm-internal-cicd-resource-gro
       }
       try {
           env.REGION=region
-          env.RESOURCE_GROUP=resource_group
+          env.RESOURCE_GROUP="ocs-resource-group"
           if ( env.SERVICE_INSTANCE_GUID != ""  ){
               env.SERVICE_INSTANCE_ID=env.SERVICE_INSTANCE_GUID
           }
