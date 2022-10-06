@@ -107,7 +107,7 @@ pipeline {
         }
         stage('Initialize Environment') {
             steps {
-                initializeEnvironment("us-south", "ocs-resource-group")
+                odfInitializeEnvironment()
             }
         }
         stage('Setup Terraform Plugin') {
