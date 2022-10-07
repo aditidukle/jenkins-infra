@@ -30,7 +30,7 @@ def call(String config, String noOfWorkers="2"){
                 env.WORKER_MEMORY = "16"
             }
         }
-        else if ( env.ODF_VERSION != "" ) {
+        else if (config == "odf") {
             env.BASTION_MEMORY = "16"
             env.BASTION_PROCESSORS = "1"
 
