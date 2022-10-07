@@ -43,13 +43,13 @@ pipeline {
 	TIER_TEST = "3"
         ENABLE_FIPS = false
         ENABLE_VAULT = false
-
+        CONFIG_TYPE="odf"
 	 }
     stages {
         stage('Setup Common Environment Variables') {
             steps {
                 //setupCommonEnvironmentVariables()
-                setupClusterConfig()
+                setupClusterConfig("${CONFIG_TYPE}")
             }
         }	    
         stage('pull artifact') {
