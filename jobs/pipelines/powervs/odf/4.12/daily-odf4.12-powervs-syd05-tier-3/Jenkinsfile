@@ -47,7 +47,7 @@ pipeline {
     stages {
         stage('Setup Common Environment Variables') {
             steps {
-                odfSetupCommonEnvironmentVariables()
+                setupCommonEnvironmentVariables()
                 odfSetupClusterConfig()
             }
         }	    
