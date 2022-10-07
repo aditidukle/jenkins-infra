@@ -48,7 +48,7 @@ pipeline {
     stages {
         stage('Setup Common Environment Variables') {
             steps {
-                //setupCommonEnvironmentVariables()
+                setupCommonEnvironmentVariables()
                 setupClusterConfig("${CONFIG_TYPE}")
             }
         }	    
