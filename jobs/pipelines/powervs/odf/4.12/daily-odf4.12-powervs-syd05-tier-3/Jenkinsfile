@@ -48,8 +48,8 @@ pipeline {
     stages {
         stage('Setup Common Environment Variables') {
             steps {
-                setupCommonEnvironmentVariables()
-                odfSetupClusterConfig()
+                //setupCommonEnvironmentVariables()
+                setupClusterConfig()
             }
         }	    
         stage('pull artifact') {
