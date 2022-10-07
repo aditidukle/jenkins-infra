@@ -45,6 +45,12 @@ pipeline {
 
 	 }
     stages {
+        stage('Setup Common Environment Variables') {
+            steps {
+                odfSetupCommonEnvironmentVariables()
+                odfSetupClusterConfig()
+            }
+        }	    
         stage('pull artifact') {
             steps {
                 getArtifacts("mirror-openshift-release", "latest-${OCP_RELEASE}-build.txt" )
