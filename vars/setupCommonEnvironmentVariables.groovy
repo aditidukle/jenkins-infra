@@ -45,7 +45,7 @@ def call() {
             env.UPGRADE_PAUSE_TIME = ""
             env.UPGRADE_DELAY_TIME = ""
 
-            if ( env.DEPLOY_ODF ) {
+            if ( env.ODF_VERSION != "" ) {
                 env.INSTANCE_NAME = "rdr-cicd-odf"
                 env.SETUP_SQUID_PROXY = "false"
                 env.STORAGE_TYPE = "notnfs"
