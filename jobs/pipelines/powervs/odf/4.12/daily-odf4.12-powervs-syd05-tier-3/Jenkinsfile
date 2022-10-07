@@ -37,6 +37,7 @@ pipeline {
         WAIT_FOR_DEBUG = "1"
 	
 	//ODF vars
+	DEPLOY_ODF = true
 	PLATFORM = "powervs"
 	ODF_VERSION = "4.12"
 	TIER_TEST = "3"
