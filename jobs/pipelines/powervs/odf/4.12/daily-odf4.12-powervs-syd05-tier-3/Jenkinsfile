@@ -129,22 +129,7 @@ pipeline {
         stage('Run ODF Setup script') {
             steps {
                 odfAuthYaml()
-                script {
-                    ansiColor('xterm') {
-                        echo ""
-                    }
-                    try {
-                        sh '''
-                           chmod +x ./scripts/odf/odf-setup-script.sh
-                           ./scripts/odf/odf-setup-script.sh
-                        '''
-                    }
-                    catch (err) {
-                        echo 'Error ! Setup script failed!'
-                        env.FAILED_STAGE=env.STAGE_NAME
-                        throw err
-                    }
-                }
+                odfRunSetupScript()
             }
         }
         stage('Run ODF deploy script') {
